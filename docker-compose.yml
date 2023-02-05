@@ -27,14 +27,14 @@ services:
       - mysql 
 
   api:
-    image: maven:3.8.7-eclipse-temurin-17-alpine
+    image: maven:3.6.0-eclipse-temurin-17-alpine
     volumes:
       - ./src:/api/src
       - ./.mvn:/api/.mvn
       - ./target:/api/target
       - ./pom.xml:/api/pom.xml
     container_name: api
-    entrypoint: bash -c 'cd /api &&  mvn spring-boot:run'
+    entrypoint: bash -c 'cd /api && mvn test && mvn spring-boot:run'
     networks:
       - database_network
     ports:

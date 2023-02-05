@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>br.com.vr-beneficios</groupId>
 	<artifactId>mini-authorizator</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<name>mini-authorizator</name>
 	<description>Autorizador para transações</description>
 	<properties>
@@ -44,6 +44,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
 	</dependencies>

@@ -5,6 +5,13 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.3] 2023-02-05
+
+### Added
+- Adicionando dependência spring-boot-starter-actuator para verificar a saúde da aplicação.
+- Adicionando teste de saúde da aplicação.
+- Adicionando no container da api a etapa de teste antes de iniciar a aplicação
+
 ## [0.0.2] 2023-02-05
 
 ### Added
