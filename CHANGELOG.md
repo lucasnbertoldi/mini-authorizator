@@ -5,6 +5,14 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.2] 2023-02-05
+
+### Added
+- Link para o CHANGELOG.md no README.md.
+
+### Changed
+- Nome para links das extensões no README.md.
+
 ## [0.0.1] 2023-02-05
 
 ### Added

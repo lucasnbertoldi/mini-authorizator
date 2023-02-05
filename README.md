@@ -2,6 +2,8 @@
 
 API Web para autorizar para transações da VR Benefícios.
 
+[Histórico de Mudanças](https://github.com/lucasnbertoldi/mini-authorizator/blob/main/CHANGELOG.md)
+
 ## Requisitos
 
 | Ferramenta | Desenvolvido na Versão |
@@ -30,13 +32,13 @@ Caso queira acompanhar os logs:
 
 **Extensões para facilitar o desenvolvimento**
 
-https://marketplace.visualstudio.com/items?itemName=vmware.vscode-spring-boot
-https://marketplace.visualstudio.com/items?itemName=developersoapbox.vscode-springboot-snippets
-https://marketplace.visualstudio.com/items?itemName=SonalSithara.spring-code-generator
+- [https://marketplace.visualstudio.com/items?itemName=vmware.vscode-spring-boot](https://marketplace.visualstudio.com/items?itemName=vmware.vscode-spring-boot)
+- [Spring Boot Snippets](https://marketplace.visualstudio.com/items?itemName=developersoapbox.vscode-springboot-snippets)
+- [Spring Code Generator](https://marketplace.visualstudio.com/items?itemName=SonalSithara.spring-code-generator)
 
 **Auto deploy**
 
-Instale a seguinte extensão: https://marketplace.visualstudio.com/items?itemName=appulate.filewatcher
+Instale a seguinte extensão: [File Watcher](https://marketplace.visualstudio.com/items?itemName=appulate.filewatcher)
 
 Crie uma **pasta** chamada "**.vscode**" na raiz do projeto, caso não exista.
 Dentro dessa pasta, crie um **arquivo** chamado "**settings.json**", caso não exista.
