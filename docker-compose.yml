@@ -1,0 +1,48 @@
+version: "3.7"
+
+services:
+  mysql:
+    image: mysql:5.7
+    hostname: mysql
+    container_name: mysql
+    restart: always    
+    environment:
+      MYSQL_DATABASE: miniautorizador
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    networks:
+      - database_network
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: "mysql"
+    networks: 
+      - database_network
+    container_name: phpmyadmin
+    ports:
+      - "8081:80"
+    depends_on: 
+      - mysql 
+
+  api:
+    image: maven:3.8.7-eclipse-temurin-17-alpine
+    volumes:
+      - ./src:/api/src
+      - ./.mvn:/api/.mvn
+      - ./target:/api/target
+      - ./pom.xml:/api/pom.xml
+    container_name: api
+    entrypoint: bash -c 'cd /api &&  mvn spring-boot:run'
+    networks:
+      - database_network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+
+networks:
+  database_network:
+    external:
+      name: database_network
