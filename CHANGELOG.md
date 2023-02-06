@@ -5,6 +5,12 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.7] 2023-02-06
+
+### Added
+- Entidade, repositório e serviço da transação.
+- Início do teste unitário de transação.
+
 ## [0.0.6] 2023-02-06
 
 ### Added
