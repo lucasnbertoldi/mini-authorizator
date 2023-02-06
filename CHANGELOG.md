@@ -5,6 +5,13 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+
+## [0.0.9] 2023-02-06
+
+### Added
+- Consulta do saldo do cartão no controller e service do cartão.
+- Teste de integração da consulta do cartão.
+
 ## [0.0.8] 2023-02-06
 
 ### Changed

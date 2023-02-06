@@ -41,8 +41,14 @@ public class CardService {
         transaction.setDateTime(systemDate.getCurrentDateTime());
         transactionRepository.save(transaction);
 
-        System.out.println(systemDate.getCurrentDateTime());
+        return card;
+    }
 
+    public CardEntity getCard(String number) throws IllegalAccessException {
+        CardEntity card = cardRepository.findByNumber(number);
+        if (card == null) {
+            throw new IllegalAccessException("Cartão não encontrado");
+        }
         return card;
     }
 

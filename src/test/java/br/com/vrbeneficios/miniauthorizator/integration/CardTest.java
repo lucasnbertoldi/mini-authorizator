@@ -5,23 +5,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 
 import br.com.vrbeneficios.miniauthorizator.dto.CartaoDTO;
+import br.com.vrbeneficios.miniauthorizator.util.constant.CardConstants;
 import br.com.vrbeneficios.miniauthorizator.util.interfaces.JSONConversor;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
+import java.math.BigDecimal;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 public class CardTest {
 
-    private final String SAVE_CARD_PATH = "/cartoes";
+    private final String CARD_PATH = "/cartoes";
 
     private final String CARD_NUMBER = "2222222222222222";
+    private final String NOT_FOUND_CARD_NUMBER = "0000000000000000";
     private final String CARD_PASSWORD = "123";
 
     @Autowired
@@ -38,28 +45,44 @@ public class CardTest {
         cartaoDTO.setSenha(CARD_PASSWORD);
 
         testSaveNewCard(cartaoDTO);
-        testSaveAlreadySavedCard(cartaoDTO);
+        getBalance(cartaoDTO.getNumeroCartao());
 
+        testSaveAlreadySavedCard(cartaoDTO);
+        getBalanceNotFoundCard(NOT_FOUND_CARD_NUMBER);
+
+    }
+
+    private void getBalanceNotFoundCard(String number) throws Exception {
+        this.mockMvc
+                .perform(get(CARD_PATH + "/" + number).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    private void getBalance(String number) throws Exception {
+        MockHttpServletResponse mockResponse = this.mockMvc
+                .perform(get(CARD_PATH + "/" + number).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn().getResponse();
+        BigDecimal value = new BigDecimal(mockResponse.getContentAsString());
+        assertTrue(value.compareTo(CardConstants.INITIAL_BALANCE) == 0);
     }
 
     private void testSaveAlreadySavedCard(CartaoDTO cartaoDTO) throws Exception {
         String cartaoJSON = jsonConversorService.convertDTOToJSON(cartaoDTO);
         this.mockMvc
-                .perform(post(SAVE_CARD_PATH).contentType(MediaType.APPLICATION_JSON).content(cartaoJSON))
+                .perform(post(CARD_PATH).contentType(MediaType.APPLICATION_JSON).content(cartaoJSON))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(cartaoJSON, true))
-                .andReturn().getResponse();
+                .andExpect(content().json(cartaoJSON, true));
     }
 
     private void testSaveNewCard(CartaoDTO cartaoDTO) throws Exception {
         String cartaoJSON = jsonConversorService.convertDTOToJSON(cartaoDTO);
         this.mockMvc
-                .perform(post(SAVE_CARD_PATH).contentType(MediaType.APPLICATION_JSON).content(cartaoJSON))
+                .perform(post(CARD_PATH).contentType(MediaType.APPLICATION_JSON).content(cartaoJSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(cartaoJSON, true))
-                .andReturn().getResponse();
+                .andExpect(content().json(cartaoJSON, true));
     }
 
 }
