@@ -8,13 +8,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import br.com.vrbeneficios.miniauthorizator.dto.CartaoDTO;
-import br.com.vrbeneficios.miniauthorizator.util.JSONConversorService;
+import br.com.vrbeneficios.miniauthorizator.util.interfaces.JSONConversor;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
-import org.json.JSONObject;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -29,7 +28,7 @@ public class CardTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private JSONConversorService jsonConversorService;
+    private JSONConversor jsonConversorService;
 
     @Test
     public void saveCard() throws Exception {

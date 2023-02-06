@@ -20,7 +20,7 @@ public class CardTest {
 
     private final String CARD_NUMBER = "1111111111111111";
     private final String CARD_PASSWORD = "123";
-    
+
     @Test
     public void saveCard() {
 
@@ -42,7 +42,13 @@ public class CardTest {
         cardService.save(newCard);
 
         assertEquals(newCard.getNumber(), CARD_NUMBER);
-        assertEquals(newCard.getPassword(), CARD_PASSWORD);
+
+        testPasswordHash(newCard);
+
+    }
+
+    private void testPasswordHash(CardEntity card) {
+        assertEquals(card.getPassword(), cardService.getPasswordHash(CARD_PASSWORD, card.getId()));
     }
 
 }

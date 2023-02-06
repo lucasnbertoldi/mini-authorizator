@@ -5,6 +5,15 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.6] 2023-02-06
+
+### Added
+- Controller para cadastro do cartão
+- Criação de interface e implementação para geração do hash para senha do cartão.
+
+### Changed
+- Criação de inteface para conversor do JSON para desaclopar a dependência com.fasterxml do conversor.
+
 ## [0.0.5] 2023-02-06
 
 ### Added
