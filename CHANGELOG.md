@@ -5,6 +5,17 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.8] 2023-02-06
+
+### Changed
+- Alterando timezone da api para America/Bahia.
+
+### Added
+- Serviço SystemDate para recolher a data do sistema.
+- Interface para armazenar constante referente ao valor inicial do cartão.
+- Criação da transação inicial quando se salva um cartão.
+- Teste unitário para valor inicial do cartão.
+
 ## [0.0.7] 2023-02-06
 
 ### Added

@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>br.com.vr-beneficios</groupId>
 	<artifactId>mini-authorizator</artifactId>
-	<version>0.0.7</version>
+	<version>0.0.8</version>
 	<name>mini-authorizator</name>
 	<description>Autorizador para transações</description>
 	<properties>

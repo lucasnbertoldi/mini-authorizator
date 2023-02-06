@@ -1,6 +1,6 @@
 package br.com.vrbeneficios.miniauthorizator.unit;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 
@@ -13,6 +13,7 @@ import br.com.vrbeneficios.miniauthorizator.dto.CartaoDTO;
 import br.com.vrbeneficios.miniauthorizator.entity.CardEntity;
 import br.com.vrbeneficios.miniauthorizator.service.CardService;
 import br.com.vrbeneficios.miniauthorizator.service.TransactionService;
+import br.com.vrbeneficios.miniauthorizator.util.constant.CardConstants;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -31,7 +32,7 @@ public class TransactionTest {
 
         CardEntity card = saveNewCard();
         BigDecimal value = transactionService.getCardBalance(card);
-        assertEquals(value, BigDecimal.ZERO);
+        assertTrue(value.compareTo(CardConstants.INITIAL_BALANCE) == 0);
 
     }
 

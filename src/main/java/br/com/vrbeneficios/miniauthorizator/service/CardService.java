@@ -1,11 +1,17 @@
 package br.com.vrbeneficios.miniauthorizator.service;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.vrbeneficios.miniauthorizator.entity.CardEntity;
+import br.com.vrbeneficios.miniauthorizator.entity.TransactionEntity;
 import br.com.vrbeneficios.miniauthorizator.repository.CardRepository;
+import br.com.vrbeneficios.miniauthorizator.repository.TransactionRepository;
+import br.com.vrbeneficios.miniauthorizator.util.constant.CardConstants;
 import br.com.vrbeneficios.miniauthorizator.util.interfaces.HashGenerator;
+import br.com.vrbeneficios.miniauthorizator.util.interfaces.SystemDate;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -15,6 +21,10 @@ public class CardService {
     private CardRepository cardRepository;
     @Autowired
     private HashGenerator hashGenerator;
+    @Autowired
+    private TransactionRepository transactionRepository;
+    @Autowired
+    private SystemDate systemDate;
 
     @Transactional
     public CardEntity save(CardEntity card) {
@@ -24,6 +34,14 @@ public class CardService {
 
         card = cardRepository.save(card);
         card = updateToSaltPassword(card);
+
+        TransactionEntity transaction = new TransactionEntity();
+        transaction.setCard(card);
+        transaction.setValue(CardConstants.INITIAL_BALANCE);
+        transaction.setDateTime(systemDate.getCurrentDateTime());
+        transactionRepository.save(transaction);
+
+        System.out.println(systemDate.getCurrentDateTime());
 
         return card;
     }

@@ -31,6 +31,15 @@ public class TransactionEntity {
     @ManyToOne
     private CardEntity card;
 
+    public TransactionEntity() {
+    }
+
+    public TransactionEntity(Date dateTime, BigDecimal value, CardEntity card) {
+        this.dateTime = dateTime;
+        this.value = value;
+        this.card = card;
+    }
+
     public Integer getId() {
         return id;
     }
