@@ -32,6 +32,7 @@ Caso queira acompanhar os logs:
 
 **Extensões para facilitar o desenvolvimento**
 
+- [Language Support for Java(TM) by Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.java)
 - [Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=vmware.vscode-spring-boot)
 - [Spring Boot Snippets](https://marketplace.visualstudio.com/items?itemName=developersoapbox.vscode-springboot-snippets)
 - [Spring Code Generator](https://marketplace.visualstudio.com/items?itemName=SonalSithara.spring-code-generator)

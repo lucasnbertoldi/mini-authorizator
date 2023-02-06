@@ -7,6 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import br.com.vrbeneficios.miniauthorizator.dto.CartaoDTO;
+import br.com.vrbeneficios.miniauthorizator.util.JSONConversorService;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -25,33 +28,39 @@ public class CardTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private JSONConversorService jsonConversorService;
+
     @Test
     public void saveCard() throws Exception {
 
-        JSONObject cardBodyJSON = new JSONObject();
-        cardBodyJSON.put("numeroCartao", CARD_NUMBER);
-        cardBodyJSON.put("senha", CARD_PASSWORD);
+        CartaoDTO cartaoDTO = new CartaoDTO();
+        cartaoDTO.setNumeroCartao(CARD_NUMBER);
+        cartaoDTO.setSenha(CARD_PASSWORD);
 
-        testSaveNewCard(cardBodyJSON);
-        testSaveAlreadySavedCard(cardBodyJSON);
+        testSaveNewCard(cartaoDTO);
+        testSaveAlreadySavedCard(cartaoDTO);
 
     }
 
-    private void testSaveAlreadySavedCard(JSONObject cardBodyJSON) throws Exception {
+    private void testSaveAlreadySavedCard(CartaoDTO cartaoDTO) throws Exception {
+        String cartaoJSON = jsonConversorService.convertDTOToJSON(cartaoDTO);
         this.mockMvc
-                .perform(post(SAVE_CARD_PATH).contentType(MediaType.APPLICATION_JSON).content(cardBodyJSON.toString()))
+                .perform(post(SAVE_CARD_PATH).contentType(MediaType.APPLICATION_JSON).content(cartaoJSON))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(cardBodyJSON.toString(), true))
+                .andExpect(content().json(cartaoJSON, true))
                 .andReturn().getResponse();
     }
 
-    private void testSaveNewCard(JSONObject cardBodyJSON) throws Exception {
+    private void testSaveNewCard(CartaoDTO cartaoDTO) throws Exception {
+        String cartaoJSON = jsonConversorService.convertDTOToJSON(cartaoDTO);
         this.mockMvc
-                .perform(post(SAVE_CARD_PATH).contentType(MediaType.APPLICATION_JSON).content(cardBodyJSON.toString()))
+                .perform(post(SAVE_CARD_PATH).contentType(MediaType.APPLICATION_JSON).content(cartaoJSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(cardBodyJSON.toString(), true))
+                .andExpect(content().json(cartaoJSON, true))
                 .andReturn().getResponse();
     }
+
 }

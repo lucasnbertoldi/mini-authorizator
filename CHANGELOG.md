@@ -5,6 +5,17 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.5] 2023-02-06
+
+### Added
+- DTO e Controller para cadastro do cartão.
+- Service para converter objetos JSON.
+
+### Changed
+- Adicionando extensão do pacote java para VSCode no README.md.
+- Função de salvar o cartão retorna a entidade.
+- Substituição do objeto de teste para DTO.
+
 ## [0.0.4] 2023-02-05
 
 ### Added
