@@ -1,4 +1,4 @@
-package br.com.vrbeneficios.miniauthorizator;
+package br.com.vrbeneficios.miniauthorizator.integration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HealthIntegrationTest {
+public class HealthTest {
 
     private final String HEALTH_PATH = "/actuator/health";
 

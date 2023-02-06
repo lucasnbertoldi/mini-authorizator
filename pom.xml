@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>br.com.vr-beneficios</groupId>
 	<artifactId>mini-authorizator</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<name>mini-authorizator</name>
 	<description>Autorizador para transações</description>
 	<properties>
@@ -27,6 +27,12 @@
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>2.1.214</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>

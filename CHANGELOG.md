@@ -5,6 +5,21 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.4] 2023-02-05
+
+### Added
+- Entidade, repositório e service do Cartão.
+- Teste unitário e de integração do Cartão.
+- Banco de dados em memória para teste (h2database).
+- Arquivo de properties para teste.
+
+### Changed
+- Separação dos testes unitários e de integração em dois pacotes.
+
+### Fixed
+- Havia mudado a versão da imagem da api por engano. Retornei para a versão correta.
+
+
 ## [0.0.3] 2023-02-05
 
 ### Added
