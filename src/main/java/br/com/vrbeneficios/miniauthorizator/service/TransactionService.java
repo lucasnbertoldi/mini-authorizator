@@ -3,6 +3,8 @@ package br.com.vrbeneficios.miniauthorizator.service;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import javax.management.OperationsException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,15 +31,32 @@ public class TransactionService {
     }
 
     @Transactional
-    public TransactionEntity save(TransactionEntity transaction, String password) throws IllegalAccessException {
+    public TransactionEntity save(TransactionEntity transaction, String password)
+            throws IllegalAccessException, OperationsException {
         verifyPassword(transaction.getCard(), password);
+        verifyValue(transaction);
+        verifyCardBalance(transaction);
         transaction.setDateTime(systemDate.getCurrentDateTime());
         transactionRepository.save(transaction);
         return transaction;
     }
 
+    private void verifyValue(TransactionEntity transaction) {
+        if (transaction.getValue().compareTo(BigDecimal.ZERO) >= 0) {
+            throw new IllegalArgumentException("O valor da transação deve ser negativo.");
+        }
+    }
+
+    private void verifyCardBalance(TransactionEntity transaction) throws OperationsException {
+        BigDecimal balaceValue = transactionRepository.getCardBalance(transaction.getCard());
+        if (transaction.getValue().abs().compareTo(balaceValue) > 0) {
+            throw new OperationsException("O cartão não tem saldo o suficiente. Saldo: " + balaceValue.toString()
+                    + " Operação: " + transaction.getValue());
+        }
+    }
+
     private void verifyPassword(CardEntity card, String password) throws IllegalAccessException {
-        if (!Objects.equals(password, cardService.getPasswordHash(password, card.getId()))) {
+        if (!Objects.equals(card.getPassword(), cardService.getPasswordHash(password, card.getId()))) {
             throw new IllegalAccessException("A senha está incorreta");
         }
     }

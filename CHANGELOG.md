@@ -5,6 +5,14 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.10] 2023-02-06
+
+### Added
+- Tratamento de erros da transação (senha incorreta, saldo insuficiente e parâmetros incorretos).
+- Testes unitários para a transação.
+
+### Fixed
+- Código que verifica a senha estava incorreto.
 
 ## [0.0.9] 2023-02-06
 

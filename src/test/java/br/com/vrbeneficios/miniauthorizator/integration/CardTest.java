@@ -45,20 +45,20 @@ public class CardTest {
         cartaoDTO.setSenha(CARD_PASSWORD);
 
         testSaveNewCard(cartaoDTO);
-        getBalance(cartaoDTO.getNumeroCartao());
+        testGetBalance(cartaoDTO.getNumeroCartao());
 
         testSaveAlreadySavedCard(cartaoDTO);
-        getBalanceNotFoundCard(NOT_FOUND_CARD_NUMBER);
+        testGetBalanceToNotFoundCard(NOT_FOUND_CARD_NUMBER);
 
     }
 
-    private void getBalanceNotFoundCard(String number) throws Exception {
+    private void testGetBalanceToNotFoundCard(String number) throws Exception {
         this.mockMvc
                 .perform(get(CARD_PATH + "/" + number).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
-    private void getBalance(String number) throws Exception {
+    private void testGetBalance(String number) throws Exception {
         MockHttpServletResponse mockResponse = this.mockMvc
                 .perform(get(CARD_PATH + "/" + number).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

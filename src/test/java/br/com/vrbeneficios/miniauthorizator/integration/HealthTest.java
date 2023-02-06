@@ -24,7 +24,7 @@ public class HealthTest {
     private MockMvc mockMvc;
 
     @Test
-    public void healthCheck() throws Exception {
+    public void healthTest() throws Exception {
         MockHttpServletResponse httpServletResponse = this.mockMvc.perform(get(HEALTH_PATH)).andExpect(status().isOk())
                 .andReturn().getResponse();
         JSONObject responseContentJSON = new JSONObject(httpServletResponse.getContentAsString());
