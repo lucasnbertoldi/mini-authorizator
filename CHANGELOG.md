@@ -5,7 +5,13 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.1.1] 2023-02-06
+
+### Changed
+- Validação para quantidade de caracteres do cartão (16).
+
 ## [0.1.0] 2023-02-06
+
 ### Added
 - Adicionando Swagger em http://localhost:8080/swagger-ui/index.html
 

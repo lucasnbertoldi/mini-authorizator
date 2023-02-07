@@ -29,8 +29,13 @@ public class CardService {
 
     @Transactional
     public CardEntity save(CardEntity card) {
+
         if (alreadyExists(card)) {
             throw new IllegalArgumentException("O cartão com o número " + card.getNumber() + " cartão já existe.");
+        }
+
+        if (!cardNumberHasCorrectLength(card)) {
+            throw new IllegalArgumentException("O número do cartão deve ter 16 caracteres.");
         }
 
         card = cardRepository.save(card);
@@ -62,6 +67,10 @@ public class CardService {
     public String getPasswordHash(String password, Integer cardId) {
         String saltHash = hashGenerator.generateSaltHash(password, cardId + "");
         return saltHash;
+    }
+
+    private boolean cardNumberHasCorrectLength(CardEntity card) {
+        return card.getNumber().length() == 16 ? true : false;
     }
 
     private boolean alreadyExists(CardEntity card) {

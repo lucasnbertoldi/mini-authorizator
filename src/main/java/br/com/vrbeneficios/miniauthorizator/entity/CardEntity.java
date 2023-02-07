@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 
 
@@ -19,6 +20,7 @@ public class CardEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Integer id;
+    @Size(min = 16, max = 16)
     @Column(name = "number", nullable = false, length = 16)
     private String number;
     @Column(name = "password", nullable = false)
