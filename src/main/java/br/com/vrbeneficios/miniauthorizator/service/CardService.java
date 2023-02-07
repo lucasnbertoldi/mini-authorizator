@@ -2,6 +2,8 @@ package br.com.vrbeneficios.miniauthorizator.service;
 
 import java.math.BigDecimal;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,6 @@ import br.com.vrbeneficios.miniauthorizator.repository.TransactionRepository;
 import br.com.vrbeneficios.miniauthorizator.util.constant.CardConstants;
 import br.com.vrbeneficios.miniauthorizator.util.interfaces.HashGenerator;
 import br.com.vrbeneficios.miniauthorizator.util.interfaces.SystemDate;
-import jakarta.transaction.Transactional;
 
 @Service
 public class CardService {

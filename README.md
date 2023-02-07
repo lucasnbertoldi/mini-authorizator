@@ -28,6 +28,10 @@ Caso queira acompanhar os logs:
 
     docker-compose logs -f
 
+## Documentação
+
+Depois de executar acesse: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
 ## Dicas para desenvolver no VSCode
 
 **Extensões para facilitar o desenvolvimento**

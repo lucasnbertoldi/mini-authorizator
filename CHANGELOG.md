@@ -5,6 +5,14 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.1.0] 2023-02-06
+### Added
+- Adicionando Swagger em http://localhost:8080/swagger-ui/index.html
+
+### Fixed
+- Downgrade versão spring da 3.0.2 para 2.7.9-SNAPSHOT por que o springdoc-openapi-ui não funciona na versão >=3.0.0
+- Correção de importações.
+
 ## [0.0.12] 2023-02-06
 
 ### Added
