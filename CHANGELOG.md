@@ -5,6 +5,11 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.12] 2023-02-06
+
+### Added
+- Arquivo com Action para executar testes no Github.
+
 ## [0.0.11] 2023-02-06
 
 ### Added
