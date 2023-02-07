@@ -44,10 +44,10 @@ public class CardService {
         return card;
     }
 
-    public CardEntity getCard(String number) throws IllegalAccessException {
+    public CardEntity getCard(String number) throws IllegalArgumentException {
         CardEntity card = cardRepository.findByNumber(number);
         if (card == null) {
-            throw new IllegalAccessException("Cartão não encontrado");
+            throw new IllegalArgumentException("Cartão não encontrado");
         }
         return card;
     }

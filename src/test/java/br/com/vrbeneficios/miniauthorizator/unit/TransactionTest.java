@@ -24,6 +24,7 @@ import br.com.vrbeneficios.miniauthorizator.util.constant.CardConstants;
 public class TransactionTest {
 
     private final String CARD_NUMBER = "3333333333333333";
+    private final String NONEXISTENT_CARD_NUMBER = "0000000000000000";
     private final String CARD_PASSWORD = "123";
     private final String INCORRECT_CARD_PASSWORD = "1234";
 
@@ -42,11 +43,11 @@ public class TransactionTest {
         testSavePositiveValue(card);
         testIncorrectPassword(card);
 
-        testSaveTransactional(card);
+        testSaveAndBalance(card);
 
     }
 
-    private void testSaveTransactional(CardEntity card) throws IllegalAccessException, OperationsException {
+    private void testSaveAndBalance(CardEntity card) throws IllegalAccessException, OperationsException {
         saveTransaction(card, new BigDecimal("-100"));
         testBalance(card, new BigDecimal("400"));
 
@@ -64,7 +65,7 @@ public class TransactionTest {
 
     private void testInsuficientCardBalance(CardEntity card) {
         assertThrows(OperationsException.class, () -> {
-            saveTransaction(card, new BigDecimal("-100"), CARD_PASSWORD);
+            saveTransaction(card, new BigDecimal("-100"));
         });
     }
 

@@ -80,7 +80,7 @@ public class CardTest {
         String cartaoJSON = jsonConversorService.convertDTOToJSON(cartaoDTO);
         this.mockMvc
                 .perform(post(CARD_PATH).contentType(MediaType.APPLICATION_JSON).content(cartaoJSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(cartaoJSON, true));
     }

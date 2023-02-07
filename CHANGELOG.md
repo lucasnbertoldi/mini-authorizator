@@ -5,6 +5,18 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.0.11] 2023-02-06
+
+### Added
+- Adicionando teste de cartão inexistente.
+- Criação do controller e DTO de transação.
+- Criação de Enum TransactionResponse com os tipos de resposta da transação.
+- Criação do teste de integração da transação. 
+
+### Fixed
+- Status retornado pela requisição de criar cartão (201).
+- Exceção de cartão não encontrado no CardService alterada para IllegalArgumentException.
+
 ## [0.0.10] 2023-02-06
 
 ### Added

@@ -31,7 +31,7 @@ public class CardController {
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<CartaoDTO>(cartaoDTO, HttpStatus.UNPROCESSABLE_ENTITY);
         }
-        return new ResponseEntity<CartaoDTO>(cartaoDTO, HttpStatus.OK);
+        return new ResponseEntity<CartaoDTO>(cartaoDTO, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "{numero}")
@@ -40,7 +40,7 @@ public class CardController {
             CardEntity card = cardService.getCard(numero);
             BigDecimal balance = transactionService.getCardBalance(card);
             return new ResponseEntity<String>(balance.toString(), HttpStatus.OK);
-        } catch (IllegalAccessException e) {
+        } catch (IllegalArgumentException e) {
             return new ResponseEntity<String>("", HttpStatus.NOT_FOUND);
         }
     }

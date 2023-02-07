@@ -24,6 +24,7 @@ public class CardTest {
     private CardService cardService;
 
     private final String CARD_NUMBER = "1111111111111111";
+    private final String NONEXISTENT_CARD_NUMBER = "0000000000000000";
     private final String CARD_PASSWORD = "123";
 
     @Autowired
@@ -34,7 +35,14 @@ public class CardTest {
 
         testSaveNewCard();
         testSaveAlreadySavedCard();
+        testGetNonexistentCard();
 
+    }
+
+    private void testGetNonexistentCard() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            cardService.getCard(NONEXISTENT_CARD_NUMBER);
+        });
     }
 
     private void testSaveAlreadySavedCard() {
