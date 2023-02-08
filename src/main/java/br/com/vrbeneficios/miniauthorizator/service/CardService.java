@@ -27,7 +27,6 @@ public class CardService {
     @Autowired
     private SystemDate systemDate;
 
-    @Transactional
     public CardEntity save(CardEntity card) {
 
         if (alreadyExists(card)) {

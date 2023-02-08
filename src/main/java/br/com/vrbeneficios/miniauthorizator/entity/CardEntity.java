@@ -7,15 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-
-
 @Entity
-@Table(name = "card")
+@Table(name = "card", indexes = { @Index(name = "number_index", columnList = "number", unique = true) })
 public class CardEntity implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -82,5 +81,5 @@ public class CardEntity implements Serializable {
             return false;
         return true;
     }
-    
+
 }

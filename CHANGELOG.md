@@ -5,6 +5,12 @@ Documentação das mudanças do projeto
 Baseado em [Keep a Changelog](http://keepachangelog.com/)
 e esse projeto adere [Semantic Versioning](http://semver.org/).
 
+## [0.1.2] 2023-02-07
+
+### Fixed
+- Inserindo unique index no numero do cartão e removendo transação do método de salvar o cartão.
+- Definindo a propagação da transação como SERIALIZABLE para o método de salvar a transação para evitar problemas de concorrências.
+
 ## [0.1.1] 2023-02-06
 
 ### Changed

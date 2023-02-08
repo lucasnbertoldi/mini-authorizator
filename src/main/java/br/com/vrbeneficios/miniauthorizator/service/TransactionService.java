@@ -4,10 +4,11 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.management.OperationsException;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.vrbeneficios.miniauthorizator.entity.CardEntity;
 import br.com.vrbeneficios.miniauthorizator.entity.TransactionEntity;
@@ -30,7 +31,7 @@ public class TransactionService {
         return balance == null ? BigDecimal.ZERO : balance;
     }
 
-    @Transactional
+    @Transactional(isolation = Isolation.SERIALIZABLE)
     public TransactionEntity save(TransactionEntity transaction, String password)
             throws IllegalAccessException, OperationsException {
         verifyPassword(transaction.getCard(), password);
